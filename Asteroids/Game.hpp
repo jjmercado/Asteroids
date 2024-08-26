@@ -11,10 +11,7 @@ class Game
 
 	private:	
 		void Events(sf::RenderWindow& window);
-		void Update(sf::Time deltaTime);
+		void Update();
 		void Render(sf::RenderWindow& window);
-		sf::Clock fpsClock;
-		unsigned int frameCount;
-
 };
 
