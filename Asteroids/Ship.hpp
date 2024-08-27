@@ -22,6 +22,6 @@ class Ship
 		float speed;
 		float rotationSpeed;
 		float heading;
-		void ApplyForce(sf::Time deltaTime);
+		void ApplyThrust(sf::Time deltaTime);
 };
 

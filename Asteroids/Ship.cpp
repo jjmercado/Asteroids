@@ -63,11 +63,12 @@ void Ship::Update(sf::Time deltaTime)
 	}
 	if (isThrusting)
 	{
-		ApplyForce(deltaTime);
+		ApplyThrust(deltaTime);
 	}
 
 	heading = shipSprite.getRotation();
 	shipSprite.move(velocity * deltaTime.asSeconds());
+	velocity *= 0.99f;
 }
 
 void Ship::Render(sf::RenderWindow& window)
@@ -75,7 +76,7 @@ void Ship::Render(sf::RenderWindow& window)
 	window.draw(shipSprite);
 }
 
-void Ship::ApplyForce(sf::Time deltaTime)
+void Ship::ApplyThrust(sf::Time deltaTime)
 {
 	acceleration = sf::Vector2f(cos(heading * 3.14159265 / 180) * speed * deltaTime.asSeconds(), sin(heading * 3.14159265 / 180) * speed * deltaTime.asSeconds());
 	velocity += acceleration;
