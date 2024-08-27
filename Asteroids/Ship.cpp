@@ -18,6 +18,8 @@ Ship::Ship()
 
 	acceleration = sf::Vector2f(0, 0);
 	isThrusting = false;
+	isRotatingLeft = false;
+	isRotatingRight = false;
 }
 
 Ship::~Ship()
