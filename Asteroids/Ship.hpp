@@ -23,5 +23,6 @@ class Ship
 		float rotationSpeed;
 		float heading;
 		void ApplyThrust(sf::Time deltaTime);
+		void OutOfBounds();
 };
 

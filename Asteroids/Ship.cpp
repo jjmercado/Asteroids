@@ -69,6 +69,7 @@ void Ship::Update(sf::Time deltaTime)
 	heading = shipSprite.getRotation();
 	shipSprite.move(velocity * deltaTime.asSeconds());
 	velocity *= 0.99f;
+	OutOfBounds();
 }
 
 void Ship::Render(sf::RenderWindow& window)
@@ -80,4 +81,24 @@ void Ship::ApplyThrust(sf::Time deltaTime)
 {
 	acceleration = sf::Vector2f(cos(heading * 3.14159265 / 180) * speed * deltaTime.asSeconds(), sin(heading * 3.14159265 / 180) * speed * deltaTime.asSeconds());
 	velocity += acceleration;
+}
+
+void Ship::OutOfBounds()
+{
+	if (shipSprite.getPosition().x > 800)
+	{
+		shipSprite.setPosition(0, shipSprite.getPosition().y);
+	}
+	if (shipSprite.getPosition().x < 0)
+	{
+		shipSprite.setPosition(800, shipSprite.getPosition().y);
+	}
+	if (shipSprite.getPosition().y > 600)
+	{
+		shipSprite.setPosition(shipSprite.getPosition().x, 0);
+	}
+	if (shipSprite.getPosition().y < 0)
+	{
+		shipSprite.setPosition(shipSprite.getPosition().x, 600);
+	}
 }
