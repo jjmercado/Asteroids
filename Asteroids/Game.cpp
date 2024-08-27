@@ -1,7 +1,11 @@
 #include "Game.hpp"
 
-Game::Game() : frameCount(0), fpsClock(), ship(), asteroid(0, 0)
+Game::Game() : frameCount(0), fpsClock(), ship()
 {
+	for (int i = 0; i < 10; i++)
+	{
+		asteroids.push_back(Asteroid(0, 0));
+	}
 }
 
 Game::~Game()
@@ -55,13 +59,21 @@ void Game::Events(sf::RenderWindow& window)
 void Game::Update(sf::Time deltaTime)
 {
 	ship.Update(deltaTime);
-	asteroid.Update(deltaTime);
+
+	for (auto& asteroid : asteroids)
+	{
+		asteroid.Update(deltaTime);
+	}
 }
 
 void Game::Render(sf::RenderWindow& window)
 {
 	window.clear();
 	ship.Render(window);
-	asteroid.Render(window);
+
+	for (auto& asteroid : asteroids)
+	{
+		asteroid.Render(window);
+	}
 	window.display();
 }

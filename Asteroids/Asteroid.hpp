@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <random>
+#include <cmath>
+#include <iostream>
 
 class Asteroid
 {
@@ -11,9 +14,13 @@ class Asteroid
 
 	private:
 		sf::Sprite asteroidSprite;
-		sf::Texture asteroidTexture;
+		sf::Texture* asteroidTexture;
 		sf::Vector2f velocity;
 		sf::Vector2f direction;
 		float speed;
+		const float pi = 3.14159265;
+		float angle;
+		void OutOfBounds();
+		void SetRandomStartPosition();
 };
 
