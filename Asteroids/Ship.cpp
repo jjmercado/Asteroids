@@ -1,6 +1,6 @@
 #include "Ship.hpp"
 
-Ship::Ship()
+Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isRotatingLeft(false), isRotatingRight(false), acceleration(sf::Vector2f(0, 0)), velocity(sf::Vector2f(0, 0))
 {
 	if (shipTexture.loadFromFile("../ship.png"))
 	{
@@ -9,17 +9,7 @@ Ship::Ship()
 		shipSprite.setOrigin(shipSprite.getGlobalBounds().width / 2, shipSprite.getGlobalBounds().height / 2);
 	}
 
-	heading = 0;
-	speed = 400;
-	rotationSpeed = 8;
-
 	shipSprite.setRotation(heading);
-	velocity = sf::Vector2f(0, 0);
-
-	acceleration = sf::Vector2f(0, 0);
-	isThrusting = false;
-	isRotatingLeft = false;
-	isRotatingRight = false;
 }
 
 Ship::~Ship()
