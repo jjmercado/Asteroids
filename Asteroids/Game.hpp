@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Ship.hpp"
 
 class Game
 {
@@ -11,7 +12,10 @@ class Game
 
 	private:	
 		void Events(sf::RenderWindow& window);
-		void Update();
+		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
+		sf::Clock fpsClock;
+		unsigned int frameCount;
+		Ship ship;
 };
 
