@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Ship.hpp"
+#include "Asteroid.hpp"
 
 class Game
 {
@@ -17,5 +18,6 @@ class Game
 		sf::Clock fpsClock;
 		unsigned int frameCount;
 		Ship ship;
+		Asteroid asteroid;
 };
 

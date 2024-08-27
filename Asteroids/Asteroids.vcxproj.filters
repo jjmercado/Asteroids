@@ -24,12 +24,18 @@
     <ClCompile Include="Ship.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Ship.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

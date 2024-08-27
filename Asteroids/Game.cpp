@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game()
+Game::Game() : frameCount(0), fpsClock(), ship(), asteroid(0, 0)
 {
 }
 
@@ -55,11 +55,13 @@ void Game::Events(sf::RenderWindow& window)
 void Game::Update(sf::Time deltaTime)
 {
 	ship.Update(deltaTime);
+	asteroid.Update(deltaTime);
 }
 
 void Game::Render(sf::RenderWindow& window)
 {
 	window.clear();
 	ship.Render(window);
+	asteroid.Render(window);
 	window.display();
 }
