@@ -32,6 +32,11 @@ void Ship::Events(sf::Event event)
 		{
 			isThrusting = true;
 		}
+
+		if (event.key.code == sf::Keyboard::Space)
+		{
+			bullet.Fire(shipSprite.getPosition(), heading);
+		}
 	}
 
 	if (event.type == sf::Event::KeyReleased)
@@ -65,7 +70,7 @@ void Ship::Update(sf::Time deltaTime)
 	{
 		ApplyThrust(deltaTime);
 	}
-
+	bullet.Update(deltaTime, shipSprite.getRotation());
 	heading = shipSprite.getRotation();
 	shipSprite.move(velocity * deltaTime.asSeconds());
 	velocity *= 0.99f;
