@@ -75,6 +75,7 @@ void Ship::Update(sf::Time deltaTime)
 void Ship::Render(sf::RenderWindow& window)
 {
 	window.draw(shipSprite);
+	bullet.Render(window);
 }
 
 void Ship::ApplyThrust(sf::Time deltaTime)

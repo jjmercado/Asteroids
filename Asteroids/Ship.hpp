@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Bullet.hpp"
 
 class Ship
 {
@@ -24,5 +25,6 @@ class Ship
 		float heading;
 		void ApplyThrust(sf::Time deltaTime);
 		void OutOfBounds();
+		Bullet bullet;
 };
 
