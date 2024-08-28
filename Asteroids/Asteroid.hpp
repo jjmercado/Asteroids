@@ -7,7 +7,7 @@
 class Asteroid
 {
 	public:
-		Asteroid(int rectX, int rectY);
+		Asteroid(sf::Texture& texture);
 		~Asteroid();
 		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);

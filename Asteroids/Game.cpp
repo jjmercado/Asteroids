@@ -2,9 +2,31 @@
 
 Game::Game() : frameCount(0), fpsClock(), ship()
 {
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(0, 3);
+
+	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(0, 0, 50, 50)))
+	{
+		asteroidTextures.push_back(asteroidTexture);
+	}
+	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(50, 0, 50, 50)))
+	{
+		asteroidTextures.push_back(asteroidTexture);
+	}
+	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(0, 50, 50, 50)))
+	{
+		asteroidTextures.push_back(asteroidTexture);
+	}
+	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(50, 50, 50, 50)))
+	{
+		asteroidTextures.push_back(asteroidTexture);
+	}
+
 	for (int i = 0; i < 10; i++)
 	{
-		asteroids.push_back(Asteroid(0, 0));
+		int randomTexture = dis(gen);
+		asteroids.push_back(Asteroid(asteroidTextures[randomTexture]));
 	}
 }
 

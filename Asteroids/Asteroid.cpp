@@ -1,14 +1,9 @@
 #include "Asteroid.hpp"
 
-Asteroid::Asteroid(int rectX, int rectY) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0)
+Asteroid::Asteroid(sf::Texture& texture) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0)
 {
-	asteroidTexture = new sf::Texture();
-
-	if (asteroidTexture->loadFromFile("../asteroids.png", sf::IntRect(rectX, rectY, 50, 50))) // schauen ob man die texture nur einmal lädt
-	{
-		asteroidSprite.setTexture(*asteroidTexture);
-		asteroidSprite.setOrigin(asteroidSprite.getGlobalBounds().width / 2, asteroidSprite.getGlobalBounds().height / 2);
-	}
+	asteroidSprite.setTexture(texture);
+	asteroidSprite.setOrigin(asteroidSprite.getGlobalBounds().width / 2, asteroidSprite.getGlobalBounds().height / 2);
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
