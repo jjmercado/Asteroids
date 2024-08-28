@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Bullet.hpp"
+#include <list>
 
 class Ship
 {
@@ -25,6 +26,6 @@ class Ship
 		float heading;
 		void ApplyThrust(sf::Time deltaTime);
 		void OutOfBounds();
-		Bullet bullet;
+		std::list<Bullet*> bullets;
 };
 

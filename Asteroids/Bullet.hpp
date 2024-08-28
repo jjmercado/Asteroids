@@ -5,14 +5,17 @@
 class Bullet
 {
 	public:
-		Bullet();
+		Bullet(sf::Vector2f shipPosition, float shipRotation);
 		~Bullet();
-		void Update(sf::Time deltaTime, float shipRotation);
+		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
-		void Fire(sf::Vector2f shipPosition, float shipRotation);
+		bool OutOfBounds();
 
 	private:
 		sf::CircleShape bulletShape;
 		sf::Vector2f bulletPos;
+		sf::Vector2f shipPosition;
+		float shipRotation;
+		static int bulletCount;
 };
 

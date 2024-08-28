@@ -35,7 +35,8 @@ void Ship::Events(sf::Event event)
 
 		if (event.key.code == sf::Keyboard::Space)
 		{
-			bullet.Fire(shipSprite.getPosition(), heading);
+			bullets.push_back(new Bullet(shipSprite.getPosition(), heading));
+			std::cout << "Bullets: " << bullets.size() << std::endl;
 		}
 	}
 
@@ -70,7 +71,29 @@ void Ship::Update(sf::Time deltaTime)
 	{
 		ApplyThrust(deltaTime);
 	}
-	bullet.Update(deltaTime, shipSprite.getRotation());
+
+	for (auto it = bullets.begin(); it != bullets.end();)
+	{
+		Bullet* bullet = *it;
+		if (bullet != nullptr)
+		{
+			bullet->Update(deltaTime);
+			if (bullet->OutOfBounds())
+			{
+				delete bullet;
+				it = bullets.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+		else
+		{
+			++it;
+		}
+	}
+
 	heading = shipSprite.getRotation();
 	shipSprite.move(velocity * deltaTime.asSeconds());
 	velocity *= 0.99f;
@@ -80,7 +103,14 @@ void Ship::Update(sf::Time deltaTime)
 void Ship::Render(sf::RenderWindow& window)
 {
 	window.draw(shipSprite);
-	bullet.Render(window);
+
+	for (auto bullet : bullets)
+	{
+		if (bullet != nullptr)
+		{
+			bullet->Render(window);
+		}
+	}
 }
 
 void Ship::ApplyThrust(sf::Time deltaTime)
