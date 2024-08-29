@@ -149,7 +149,13 @@ void Ship::Collision(std::list<Asteroid>& asteroids)
 					{
 						delete bullet;
 						bullet = nullptr;
-						it = bullets.erase(it); 
+						it = bullets.erase(it);
+						sf::Texture* test = new sf::Texture();
+						if (asteroid.GetScale().x > 0.25f)
+						{
+							asteroids.push_back(Asteroid(*test, asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
+							asteroids.push_back(Asteroid(*test, asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
+						}
 						iter = asteroids.erase(iter);
 					}
 					else

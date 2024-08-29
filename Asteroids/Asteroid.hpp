@@ -8,10 +8,14 @@ class Asteroid
 {
 	public:
 		Asteroid(sf::Texture& texture);
+		Asteroid(sf::Texture& texture, sf::Vector2f position, sf::Vector2f scale);
 		~Asteroid();
 		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
 		sf::IntRect GetCollisionRect();
+		void BreakAsteroid(sf::Vector2f oldPosition);
+		sf::Vector2f GetPosition();
+		sf::Vector2f GetScale();
 
 	private:
 		sf::Image asteroidImage;
