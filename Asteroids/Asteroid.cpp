@@ -1,6 +1,6 @@
 #include "Asteroid.hpp"
 
-Asteroid::Asteroid(sf::Texture& texture) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0), asteroidRect(asteroidSpriteCollision.getPosition().x, asteroidSpriteCollision.getPosition().y, 50, 50)
+Asteroid::Asteroid(const sf::Texture& texture) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0), asteroidRect(asteroidSprite.getPosition().x, asteroidSprite.getPosition().y, 50, 50)
 {
 	asteroidSprite.setTexture(texture);
 	asteroidSprite.setOrigin(asteroidSprite.getGlobalBounds().width / 2, asteroidSprite.getGlobalBounds().height / 2);
@@ -16,15 +16,15 @@ Asteroid::Asteroid(sf::Texture& texture) : speed(0), velocity(sf::Vector2f(0, 0)
 	direction = sf::Vector2f(cos(angle), sin(angle));
 	SetRandomStartPosition();
 
-	asteroidTextureCollision = new sf::Texture();
-	asteroidImage.create(50, 50, sf::Color::Red);
-	asteroidTextureCollision->loadFromImage(asteroidImage);
-	asteroidSpriteCollision.setTexture(*asteroidTextureCollision);
-	asteroidSpriteCollision.setOrigin(asteroidSpriteCollision.getGlobalBounds().width / 2, asteroidSpriteCollision.getGlobalBounds().height / 2);
-	asteroidSpriteCollision.setPosition(asteroidSprite.getPosition());
+	//asteroidTextureCollision = new sf::Texture();
+	//asteroidImage.create(50, 50, sf::Color::Red);
+	//asteroidTextureCollision->loadFromImage(asteroidImage);
+	//asteroidSpriteCollision.setTexture(*asteroidTextureCollision);
+	//asteroidSpriteCollision.setOrigin(asteroidSpriteCollision.getGlobalBounds().width / 2, asteroidSpriteCollision.getGlobalBounds().height / 2);
+	//asteroidSpriteCollision.setPosition(asteroidSprite.getPosition());
 }
 
-Asteroid::Asteroid(sf::Texture& texture, sf::Vector2f position, sf::Vector2f scale) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0), asteroidRect(asteroidSpriteCollision.getPosition().x, asteroidSpriteCollision.getPosition().y, 50, 50)
+Asteroid::Asteroid(const sf::Texture& texture, sf::Vector2f position, sf::Vector2f scale) : speed(0), velocity(sf::Vector2f(0, 0)), angle(0), asteroidRect(asteroidSprite.getPosition().x, asteroidSprite.getPosition().y, 50, 50)
 {
 	asteroidSprite.setPosition(position);
 	asteroidSprite.setTexture(texture);
@@ -41,13 +41,13 @@ Asteroid::Asteroid(sf::Texture& texture, sf::Vector2f position, sf::Vector2f sca
 
 	direction = sf::Vector2f(cos(angle), sin(angle));
 
-	asteroidTextureCollision = new sf::Texture();
-	asteroidImage.create(50, 50, sf::Color::Blue);
-	asteroidTextureCollision->loadFromImage(asteroidImage);
-	asteroidSpriteCollision.setScale(scale);
-	asteroidSpriteCollision.setTexture(*asteroidTextureCollision);
-	asteroidSpriteCollision.setOrigin(asteroidSpriteCollision.getGlobalBounds().width / 2, asteroidSpriteCollision.getGlobalBounds().height / 2);
-	asteroidSpriteCollision.setPosition(asteroidSprite.getPosition());
+	//asteroidTextureCollision = new sf::Texture();
+	//asteroidImage.create(50, 50, sf::Color::Blue);
+	//asteroidTextureCollision->loadFromImage(asteroidImage);
+	//asteroidSpriteCollision.setScale(scale);
+	//asteroidSpriteCollision.setTexture(*asteroidTextureCollision);
+	//asteroidSpriteCollision.setOrigin(asteroidSpriteCollision.getGlobalBounds().width / 2, asteroidSpriteCollision.getGlobalBounds().height / 2);
+	//asteroidSpriteCollision.setPosition(asteroidSprite.getPosition());
 }
 
 Asteroid::~Asteroid()
@@ -60,7 +60,7 @@ void Asteroid::Update(sf::Time deltaTime)
 	asteroidSprite.move(velocity * deltaTime.asSeconds());
 	asteroidSpriteCollision.move(velocity * deltaTime.asSeconds());
 	OutOfBounds();
-	asteroidRect = sf::IntRect(asteroidSpriteCollision.getPosition().x, asteroidSpriteCollision.getPosition().y, asteroidSpriteCollision.getGlobalBounds().width, asteroidSpriteCollision.getGlobalBounds().height);
+	asteroidRect = sf::IntRect(asteroidSprite.getPosition().x, asteroidSprite.getPosition().y, asteroidSprite.getGlobalBounds().width, asteroidSprite.getGlobalBounds().height);
 }
 
 void Asteroid::Render(sf::RenderWindow& window)
@@ -74,14 +74,6 @@ sf::IntRect Asteroid::GetCollisionRect()
 	return asteroidRect;
 }
 
-void Asteroid::BreakAsteroid(sf::Vector2f oldPosition)
-{
-	asteroidSprite.setPosition(oldPosition);
-	asteroidSpriteCollision.setPosition(oldPosition);
-	//SetRandomStartPosition();
-	asteroidSprite.setScale(0.5f, 0.5f);
-}
-
 sf::Vector2f Asteroid::GetPosition()
 {
 	return asteroidSprite.getPosition();
@@ -90,6 +82,11 @@ sf::Vector2f Asteroid::GetPosition()
 sf::Vector2f Asteroid::GetScale()
 {
 	return asteroidSprite.getScale();
+}
+
+const sf::Texture& Asteroid::GetTexture()
+{
+	return *asteroidSprite.getTexture();
 }
 
 void Asteroid::OutOfBounds()

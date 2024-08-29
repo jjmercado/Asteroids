@@ -2,11 +2,11 @@
 
 Bullet::Bullet(sf::Vector2f shipPosition, float shipRotation) : bulletPos(), shipPosition(), shipRotation(), bulletRect(bulletShape.getPosition().x, bulletShape.getPosition().y, 10, 10)
 {
-	bulletImage.create(10, 10, sf::Color::Red);
-	bulletTexture.loadFromImage(bulletImage);
-	bulletSprite.setTexture(bulletTexture);
-	bulletSprite.setOrigin(bulletSprite.getGlobalBounds().width / 2, bulletSprite.getGlobalBounds().height / 2);
-	bulletSprite.setPosition(shipPosition);
+	//bulletImage.create(10, 10, sf::Color::Red);
+	//bulletTexture.loadFromImage(bulletImage);
+	//bulletSprite.setTexture(bulletTexture);
+	//bulletSprite.setOrigin(bulletSprite.getGlobalBounds().width / 2, bulletSprite.getGlobalBounds().height / 2);
+	//bulletSprite.setPosition(shipPosition);
 
 	this->shipPosition = shipPosition;
 	this->shipRotation = shipRotation;

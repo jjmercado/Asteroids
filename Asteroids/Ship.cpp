@@ -12,12 +12,12 @@ Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isR
 	shipSprite.setRotation(heading);
 
 	shipRect = sf::IntRect(shipSprite.getPosition().x, shipSprite.getPosition().y, shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height);
-	shipImage.create(shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height, sf::Color::Green);
-	shipTextureCollision = new sf::Texture();
-	shipTextureCollision->loadFromImage(shipImage);
-	shipSpriteCollision.setTexture(*shipTextureCollision);
-	shipSpriteCollision.setOrigin(shipSpriteCollision.getGlobalBounds().width / 2, shipSpriteCollision.getGlobalBounds().height / 2);
-	shipSpriteCollision.setPosition(shipSprite.getPosition());
+	//shipImage.create(shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height, sf::Color::Green);
+	//shipTextureCollision = new sf::Texture();
+	//shipTextureCollision->loadFromImage(shipImage);
+	//shipSpriteCollision.setTexture(*shipTextureCollision);
+	//shipSpriteCollision.setOrigin(shipSpriteCollision.getGlobalBounds().width / 2, shipSpriteCollision.getGlobalBounds().height / 2);
+	//shipSpriteCollision.setPosition(shipSprite.getPosition());
 }
 
 Ship::~Ship()
@@ -150,11 +150,14 @@ void Ship::Collision(std::list<Asteroid>& asteroids)
 						delete bullet;
 						bullet = nullptr;
 						it = bullets.erase(it);
-						sf::Texture* test = new sf::Texture();
 						if (asteroid.GetScale().x > 0.25f)
 						{
-							asteroids.push_back(Asteroid(*test, asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
-							asteroids.push_back(Asteroid(*test, asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
+							for (int i = 0; i < 2; i++)
+							{
+								asteroids.push_back(Asteroid(asteroid.GetTexture(), asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
+								// need to set the scale for the collision rect
+								error here
+							}
 						}
 						iter = asteroids.erase(iter);
 					}
