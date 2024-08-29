@@ -11,8 +11,13 @@ class Asteroid
 		~Asteroid();
 		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
+		sf::IntRect GetCollisionRect();
 
 	private:
+		sf::Image asteroidImage;
+		sf::IntRect asteroidRect;
+		sf::Texture* asteroidTextureCollision;
+		sf::Sprite asteroidSpriteCollision;
 		sf::Sprite asteroidSprite;
 		sf::Texture* asteroidTexture;
 		sf::Vector2f velocity;

@@ -1,34 +1,38 @@
 #include "Bullet.hpp"
 
-int Bullet::bulletCount = 0;
-
-Bullet::Bullet(sf::Vector2f shipPosition, float shipRotation) : bulletPos()
+Bullet::Bullet(sf::Vector2f shipPosition, float shipRotation) : bulletPos(), shipPosition(), shipRotation(), bulletRect(bulletShape.getPosition().x, bulletShape.getPosition().y, 10, 10)
 {
+	bulletImage.create(10, 10, sf::Color::Red);
+	bulletTexture.loadFromImage(bulletImage);
+	bulletSprite.setTexture(bulletTexture);
+	bulletSprite.setOrigin(bulletSprite.getGlobalBounds().width / 2, bulletSprite.getGlobalBounds().height / 2);
+	bulletSprite.setPosition(shipPosition);
+
 	this->shipPosition = shipPosition;
 	this->shipRotation = shipRotation;
 	bulletShape.setRadius(5);
 	bulletShape.setFillColor(sf::Color::White);
 	bulletShape.setOrigin(bulletShape.getRadius(), bulletShape.getRadius());
 	bulletShape.setPosition(shipPosition + bulletPos);
-	bulletCount++;
-	std::cout << "Bullet created: " << bulletCount << std::endl;
+	bulletRect = sf::IntRect(bulletShape.getPosition().x, bulletShape.getPosition().y, 10, 10);
 }
 
 Bullet::~Bullet()
 {
-	bulletCount--;
-	std::cout << "Bullet destroyed: " << bulletCount << std::endl;
 }
 
 void Bullet::Update(sf::Time deltaTime)
 {
 	bulletPos = sf::Vector2f(cos(shipRotation * 3.14159265 / 180) * 20, sin(shipRotation * 3.14159265 / 180) * 20);
+	bulletSprite.move(bulletPos);
 	bulletShape.move(bulletPos);
+	bulletRect = sf::IntRect(bulletShape.getPosition().x, bulletShape.getPosition().y, 10, 10);
 }
 
 void Bullet::Render(sf::RenderWindow& window)
 {
 	window.draw(bulletShape);
+	window.draw(bulletSprite);
 }
 
 bool Bullet::OutOfBounds()
@@ -50,4 +54,9 @@ bool Bullet::OutOfBounds()
 		return true;
 	}
 	return false;
+}
+
+sf::IntRect Bullet::GetBulletRect()
+{
+	return bulletRect;
 }

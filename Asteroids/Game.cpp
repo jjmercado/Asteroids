@@ -81,7 +81,7 @@ void Game::Events(sf::RenderWindow& window)
 void Game::Update(sf::Time deltaTime)
 {
 	ship.Update(deltaTime);
-
+	ship.Collision(asteroids);
 	for (auto& asteroid : asteroids)
 	{
 		asteroid.Update(deltaTime);

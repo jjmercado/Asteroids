@@ -3,6 +3,8 @@
 #include <iostream>
 #include "Bullet.hpp"
 #include <list>
+#include <vector>
+#include "Asteroid.hpp"
 
 class Ship
 {
@@ -12,8 +14,13 @@ class Ship
 		void Events(sf::Event event);
 		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
+		void Collision(std::vector<Asteroid>& asteroids);
 
 	private:
+		sf::Image shipImage;
+		sf::IntRect shipRect;
+		sf::Texture* shipTextureCollision;
+		sf::Sprite shipSpriteCollision;
 		sf::Texture shipTexture;
 		sf::Sprite shipSprite;
 		sf::Vector2f velocity;

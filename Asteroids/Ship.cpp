@@ -10,6 +10,14 @@ Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isR
 	}
 
 	shipSprite.setRotation(heading);
+
+	shipRect = sf::IntRect(shipSprite.getPosition().x, shipSprite.getPosition().y, shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height);
+	shipImage.create(shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height, sf::Color::Green);
+	shipTextureCollision = new sf::Texture();
+	shipTextureCollision->loadFromImage(shipImage);
+	shipSpriteCollision.setTexture(*shipTextureCollision);
+	shipSpriteCollision.setOrigin(shipSpriteCollision.getGlobalBounds().width / 2, shipSpriteCollision.getGlobalBounds().height / 2);
+	shipSpriteCollision.setPosition(shipSprite.getPosition());
 }
 
 Ship::~Ship()
@@ -96,19 +104,60 @@ void Ship::Update(sf::Time deltaTime)
 
 	heading = shipSprite.getRotation();
 	shipSprite.move(velocity * deltaTime.asSeconds());
+	shipSpriteCollision.move(velocity * deltaTime.asSeconds());
 	velocity *= 0.99f;
 	OutOfBounds();
+	shipRect = sf::IntRect(shipSprite.getPosition().x, shipSprite.getPosition().y, shipSprite.getGlobalBounds().width, shipSprite.getGlobalBounds().height);
 }
 
 void Ship::Render(sf::RenderWindow& window)
 {
 	window.draw(shipSprite);
+	window.draw(shipSpriteCollision);
 
 	for (auto bullet : bullets)
 	{
 		if (bullet != nullptr)
 		{
 			bullet->Render(window);
+		}
+	}
+}
+
+void Ship::Collision(std::vector<Asteroid>& asteroids)
+{
+	for (auto& asteroid : asteroids)
+	{
+		if (shipRect.intersects(asteroid.GetCollisionRect()))
+		{
+			shipSprite.setPosition(400, 300);
+			shipSpriteCollision.setPosition(400, 300);
+		}
+	}
+
+	for (auto it = bullets.begin(); it != bullets.end();)
+	{
+		Bullet* bullet = *it;
+		if (bullet != nullptr)
+		{
+			for (auto& asteroid : asteroids)
+			{
+				if (bullet != nullptr)
+				{
+					if (bullet->GetBulletRect().intersects(asteroid.GetCollisionRect()))
+					{
+						delete bullet;
+						bullet = nullptr;
+						it = bullets.erase(it);
+					}
+				}
+			}
+			if(it != bullets.end())
+				++it;
+		}
+		else
+		{
+			++it;
 		}
 	}
 }
