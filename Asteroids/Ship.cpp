@@ -124,7 +124,7 @@ void Ship::Render(sf::RenderWindow& window)
 	}
 }
 
-void Ship::Collision(std::vector<Asteroid>& asteroids)
+void Ship::Collision(std::list<Asteroid>& asteroids)
 {
 	for (auto& asteroid : asteroids)
 	{
@@ -140,16 +140,26 @@ void Ship::Collision(std::vector<Asteroid>& asteroids)
 		Bullet* bullet = *it;
 		if (bullet != nullptr)
 		{
-			for (auto& asteroid : asteroids)
+			for (auto iter = asteroids.begin(); iter != asteroids.end();)
 			{
+				Asteroid& asteroid = *iter;
 				if (bullet != nullptr)
 				{
 					if (bullet->GetBulletRect().intersects(asteroid.GetCollisionRect()))
 					{
 						delete bullet;
 						bullet = nullptr;
-						it = bullets.erase(it);
+						it = bullets.erase(it); 
+						iter = asteroids.erase(iter);
 					}
+					else
+					{
+						++iter;
+					}
+				}
+				else
+				{
+					++iter;
 				}
 			}
 			if(it != bullets.end())
@@ -160,6 +170,11 @@ void Ship::Collision(std::vector<Asteroid>& asteroids)
 			++it;
 		}
 	}
+}
+
+std::list<Bullet*>& Ship::GetBullets()
+{
+	return bullets;
 }
 
 void Ship::ApplyThrust(sf::Time deltaTime)

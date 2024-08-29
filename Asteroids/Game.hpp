@@ -4,6 +4,7 @@
 #include "Ship.hpp"
 #include "Asteroid.hpp"
 #include <vector>
+#include <list>
 
 class Game
 {
@@ -19,7 +20,7 @@ class Game
 		sf::Clock fpsClock;
 		unsigned int frameCount;
 		Ship ship;
-		std::vector<Asteroid> asteroids;
+		std::list<Asteroid> asteroids;
 		sf::Texture	asteroidTexture;
 		std::vector<sf::Texture> asteroidTextures;
 };

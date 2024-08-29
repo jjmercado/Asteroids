@@ -14,7 +14,8 @@ class Ship
 		void Events(sf::Event event);
 		void Update(sf::Time deltaTime);
 		void Render(sf::RenderWindow& window);
-		void Collision(std::vector<Asteroid>& asteroids);
+		void Collision(std::list<Asteroid>& asteroids);
+		std::list<Bullet*>& GetBullets();
 
 	private:
 		sf::Image shipImage;
