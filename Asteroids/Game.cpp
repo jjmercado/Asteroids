@@ -23,7 +23,7 @@ Game::Game() : frameCount(0), fpsClock(), ship()
 		asteroidTextures.push_back(asteroidTexture);
 	}
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		int randomTexture = dis(gen);
 		asteroids.push_back(Asteroid(asteroidTextures[randomTexture]));

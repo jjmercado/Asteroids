@@ -1,6 +1,6 @@
 #include "Ship.hpp"
 
-Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isRotatingLeft(false), isRotatingRight(false), acceleration(sf::Vector2f(0, 0)), velocity(sf::Vector2f(0, 0))
+Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isRotatingLeft(false), isRotatingRight(false), acceleration(sf::Vector2f(0, 0)), velocity(sf::Vector2f(0, 0)), isInvincible(false), invincibleTime(sf::Time::Zero), blinkInterval(sf::milliseconds(200))
 {
 	if (shipTexture.loadFromFile("../ship.png"))
 	{
@@ -44,7 +44,6 @@ void Ship::Events(sf::Event event)
 		if (event.key.code == sf::Keyboard::Space)
 		{
 			bullets.push_back(new Bullet(shipSprite.getPosition(), heading));
-			std::cout << "Bullets: " << bullets.size() << std::endl;
 		}
 	}
 
@@ -67,6 +66,22 @@ void Ship::Events(sf::Event event)
 
 void Ship::Update(sf::Time deltaTime)
 {
+	if (isInvincible) 
+	{
+		invincibleTime -= deltaTime;
+		if (invincibleTime <= sf::Time::Zero) 
+		{
+			isInvincible = false;
+			shipSprite.setColor(sf::Color::White);
+		}
+		else 
+		{
+			// Blinkeffekt
+			int blinkPhase = static_cast<int>(invincibleTime.asMilliseconds() / blinkInterval.asMilliseconds()) % 2;
+			shipSprite.setColor(blinkPhase == 0 ? sf::Color::Transparent : sf::Color::White);
+		}
+	}
+
 	if (isRotatingLeft)
 	{
 		shipSprite.rotate(-rotationSpeed);
@@ -126,12 +141,19 @@ void Ship::Render(sf::RenderWindow& window)
 
 void Ship::Collision(std::list<Asteroid>& asteroids)
 {
-	for (auto& asteroid : asteroids)
+	if (!isInvincible)
 	{
-		if (shipRect.intersects(asteroid.GetCollisionRect()))
+		for (auto& asteroid : asteroids)
 		{
-			shipSprite.setPosition(400, 300);
-			shipSpriteCollision.setPosition(400, 300);
+			if (shipRect.intersects(asteroid.GetCollisionRect()))
+			{
+				shipSprite.setPosition(400, 300);
+				shipSpriteCollision.setPosition(400, 300);
+
+				isInvincible = true;
+				invincibleTime = sf::seconds(2.f);
+				shipSprite.setColor(sf::Color::Transparent);
+			}
 		}
 	}
 
@@ -155,8 +177,6 @@ void Ship::Collision(std::list<Asteroid>& asteroids)
 							for (int i = 0; i < 2; i++)
 							{
 								asteroids.push_back(Asteroid(asteroid.GetTexture(), asteroid.GetPosition(), asteroid.GetScale() * 0.5f));
-								// need to set the scale for the collision rect
-								error here
 							}
 						}
 						iter = asteroids.erase(iter);

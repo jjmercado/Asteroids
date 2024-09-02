@@ -29,11 +29,14 @@ class Ship
 		bool isThrusting;
 		bool isRotatingLeft;
 		bool isRotatingRight;
+		bool isInvincible;
 		float speed;
 		float rotationSpeed;
 		float heading;
 		void ApplyThrust(sf::Time deltaTime);
 		void OutOfBounds();
 		std::list<Bullet*> bullets;
+		sf::Time invincibleTime;
+		sf::Time blinkInterval;
 };
 
