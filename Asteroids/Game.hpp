@@ -23,5 +23,6 @@ class Game
 		std::list<Asteroid> asteroids;
 		sf::Texture	asteroidTexture;
 		std::vector<sf::Texture> asteroidTextures;
+		void Reset();
 };
 

@@ -16,6 +16,7 @@ class Ship
 		void Render(sf::RenderWindow& window);
 		void Collision(std::list<Asteroid>& asteroids);
 		std::list<Bullet*>& GetBullets();
+		void Reset();
 
 	private:
 		sf::Image shipImage;

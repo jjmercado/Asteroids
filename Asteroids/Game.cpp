@@ -82,6 +82,12 @@ void Game::Update(sf::Time deltaTime)
 {
 	ship.Update(deltaTime);
 	ship.Collision(asteroids);
+
+	if (asteroids.size() == 0)
+	{
+		Reset();
+	}
+
 	for (auto& asteroid : asteroids)
 	{
 		asteroid.Update(deltaTime);
@@ -98,4 +104,19 @@ void Game::Render(sf::RenderWindow& window)
 		asteroid.Render(window);
 	}
 	window.display();
+}
+
+void Game::Reset()
+{
+	ship.Reset();
+	asteroids.clear();
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(0, 3);
+
+	for (int i = 0; i < 5; i++)
+	{
+		int randomTexture = dis(gen);
+		asteroids.push_back(Asteroid(asteroidTextures[randomTexture]));
+	}
 }

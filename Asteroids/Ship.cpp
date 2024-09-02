@@ -231,3 +231,23 @@ void Ship::OutOfBounds()
 		shipSprite.setPosition(shipSprite.getPosition().x, 600);
 	}
 }
+
+void Ship::Reset()
+{
+	shipSprite.setPosition(400, 300);
+	shipSpriteCollision.setPosition(400, 300);
+	shipSprite.setRotation(0);
+	velocity = sf::Vector2f(0, 0);
+	acceleration = sf::Vector2f(0, 0);
+	isThrusting = false;
+	isRotatingLeft = false;
+	isRotatingRight = false;
+	isInvincible = false;
+	invincibleTime = sf::Time::Zero;
+	shipSprite.setColor(sf::Color::White);
+	for (auto bullet : bullets)
+	{
+		delete bullet;
+	}
+	bullets.clear();
+}
