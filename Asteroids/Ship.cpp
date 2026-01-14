@@ -2,7 +2,7 @@
 
 Ship::Ship() : heading(0), speed(400), rotationSpeed(8), isThrusting(false), isRotatingLeft(false), isRotatingRight(false), acceleration(sf::Vector2f(0, 0)), velocity(sf::Vector2f(0, 0)), isInvincible(false), invincibleTime(sf::Time::Zero), blinkInterval(sf::milliseconds(200))
 {
-	if (shipTexture.loadFromFile("../ship.png"))
+	if (shipTexture.loadFromFile("../assets/ship.png"))
 	{
 		shipSprite.setTexture(shipTexture);
 		shipSprite.setPosition(400, 300);

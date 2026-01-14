@@ -6,19 +6,19 @@ Game::Game() : frameCount(0), fpsClock(), ship()
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dis(0, 3);
 
-	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(0, 0, 50, 50)))
+	if (asteroidTexture.loadFromFile("../assets/asteroids.png", sf::IntRect(0, 0, 50, 50)))
 	{
 		asteroidTextures.push_back(asteroidTexture);
 	}
-	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(50, 0, 50, 50)))
+	if (asteroidTexture.loadFromFile("../assets/asteroids.png", sf::IntRect(50, 0, 50, 50)))
 	{
 		asteroidTextures.push_back(asteroidTexture);
 	}
-	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(0, 50, 50, 50)))
+	if (asteroidTexture.loadFromFile("../assets/asteroids.png", sf::IntRect(0, 50, 50, 50)))
 	{
 		asteroidTextures.push_back(asteroidTexture);
 	}
-	if (asteroidTexture.loadFromFile("../asteroids.png", sf::IntRect(50, 50, 50, 50)))
+	if (asteroidTexture.loadFromFile("../assets/asteroids.png", sf::IntRect(50, 50, 50, 50)))
 	{
 		asteroidTextures.push_back(asteroidTexture);
 	}
