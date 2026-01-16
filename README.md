@@ -2,6 +2,8 @@
 
 This project is my implementation of the arcade classic *Asteroids*, developed in C++ using the SFML (Simple and Fast Multimedia Library). The goal was to program the fundamental mechanics of a 2D space shooter from scratch.
 
+> Read this in [German](README.de.md).
+
 🕹️ **The Game**
 
 ### Gameplay
