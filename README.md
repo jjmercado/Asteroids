@@ -43,31 +43,28 @@ This project uses CMake to manage the build process across different platforms.
 ```bash
 git clone https://github.com/jjmercado/Asteroids
 cd Asteroids
-
 ```
-
 
 2. **Create a Build Directory:**
 ```bash
 mkdir build
 cd build
-
 ```
-
 
 3. **Configure CMake:**
 ```bash
 cmake ..
-
 ```
 
-
-4. **Build the Project:**
+4. **Build the Project: Linux**
 ```bash
 cmake --build .
-
 ```
 
+4.1 **Build the Project: Windows**
+```bash
+cmake --build . --config Release
+```
 
 5. **Run the Game:**
 After the build is complete, you will find the executable file in the `build` folder (or under `build/Debug` / `build/Release` on Windows).

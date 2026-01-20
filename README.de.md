@@ -54,15 +54,20 @@ cd build
 ```
 
 3. **CMake konfigurieren:**
-
+Check if the path to sfml is correct in windows
 ```bash
 cmake ..
 ```
 
-4. **CMake konfigurieren:**
+4. **CMake konfigurieren: Linux**
 
 ```bash
 cmake --build .
+```
+
+4.1 **Build the Project: Windows**
+```bash
+cmake --build . --config Release
 ```
 
 5. **Spiel starten:**
