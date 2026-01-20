@@ -57,15 +57,17 @@ Check if the path to sfml is correct
 cmake .. 
 ```
 
-4. **Build the Project: Linux**
-```bash
-cmake --build .
-```
+4. **Build the Project:**
 
-4.1 **Build the Project: Windows**
-```bash
-cmake --build . --config Release
-```
+    1. **Linux**
+    ```bash
+    cmake --build .
+    ```
+
+    2. **Windows**
+    ```bash
+    cmake --build . --config Release
+    ```
 
 5. **Run the Game:**
 After the build is complete, you will find the executable file in the `build` folder (or under `build/Debug` / `build/Release` on Windows).

@@ -59,11 +59,17 @@ Check if the path to sfml is correct
 cmake ..
 ```
 
-4. **CMake konfigurieren: Linux**
+4. **Build the Project:**
 
-```bash
-cmake --build .
-```
+    1. **Linux**
+    ```bash
+    cmake --build .
+    ```
+
+    2. **Windows**
+    ```bash
+    cmake --build . --config Release
+    ```
 
 4.1 **Build the Project: Windows**
 ```bash
