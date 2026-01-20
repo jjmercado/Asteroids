@@ -70,12 +70,7 @@ cmake ..
     ```bash
     cmake --build . --config Release
     ```
-
-4.1 **Build the Project: Windows**
-```bash
-cmake --build . --config Release
-```
-
+    
 5. **Spiel starten:**
 Nach dem Build findest du die ausführbare Datei im build-Ordner (oder unter build/Debug / build/Release bei Windows).
 
