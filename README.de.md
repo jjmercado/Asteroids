@@ -33,9 +33,9 @@ Dieses Projekt verwendet CMake, um den Build-Prozess plattformübergreifend zu v
 
 ### Voraussetzungen
 
-- Ein C++17 fähiger Compiler (GCC, Clang oder MSVC).
-- CMake (Version 3.10 oder höher).
-- SFML 2.6.2 (Update auf die aktuellste SFML-Version folgt, sobald Zeit dafür ist).
+- Ein **C++17** fähiger Compiler (GCC, Clang oder MSVC).
+- **CMake** (Version 3.10 oder höher).
+- **SFML 2.6.2** Download binaries for Linux(not via Package Manager) or Windows, (Update auf die aktuellste SFML-Version folgt, sobald Zeit dafür ist).
 
 ### Schritt-für-Schritt
 
@@ -54,7 +54,7 @@ cd build
 ```
 
 3. **CMake konfigurieren:**
-Check if the path to sfml is correct in windows
+Check if the path to sfml is correct
 ```bash
 cmake ..
 ```
