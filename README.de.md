@@ -35,7 +35,7 @@ Dieses Projekt verwendet CMake, um den Build-Prozess plattformübergreifend zu v
 
 - Ein **C++17** fähiger Compiler (GCC, Clang oder MSVC).
 - **CMake** (Version 3.10 oder höher).
-- **SFML 2.6.2** Download binaries for Linux(not via Package Manager) or Windows, (Update auf die aktuellste SFML-Version folgt, sobald Zeit dafür ist).
+- **SFML 2.6.2** Download binaries for Linux(nicht via Package Manager) oder Windows, (Update auf die aktuellste SFML-Version folgt, sobald Zeit dafür ist).
 
 ### Schritt-für-Schritt
 
