@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(UNIX)
-    #set(SFML_PATH "/home/") Only needed if downloaded SFML directly if downloaded via package manager it gets linked correctly 
+    set(SFML_PATH "/home/Projects/Programming/C++/SFML-2.6.2") 
 elseif(WIN32)
     set(SFML_PATH "C:/builds/SFML-2.6.2")
 endif()
